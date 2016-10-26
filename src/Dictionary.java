@@ -13,7 +13,7 @@ public class Dictionary {
 	}
 	
 	/**
-	 * Private Class for Dictionary that contains character and count and has methods to 
+	 * Private Class for Dictionary that contains character and count and has methods to retrieve them
 	 * @author Sam
 	 *
 	 */

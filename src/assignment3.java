@@ -14,12 +14,14 @@ public class assignment3 {
 		// TODO read file
 		System.out.println("Assignment 3- Sam Codrington & Aidan Gunda");
 		String samMcGee=readFile("Sam McGee.txt");
+		System.out.println ("Successfully Read SamMcGee.txt");
 		/* Part a) build a Huffman code for a text document, and compute the total number of bits needed to
 		store the encoded document. Compare this to the number of bits required if each character is
 		stored with 8 bits (as in ASCII).
 		When completing part a), remember that "line feed" is a character that needs to be encoded as
 		well, so that the document can be successfully restored.*/
-		Huffman partA=Huffman();
+		Huffman partA=new Huffman(samMcGee);
+		System.out.println("Loaded into Huffman Object");
 		
 		/*
 		Part b)  read a text file that contains a Huffman Code and store the code-strings in an appropriate
