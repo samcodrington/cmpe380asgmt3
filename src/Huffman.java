@@ -1,7 +1,6 @@
 
 public class Huffman {
 	private String textfile;
-	private int asciiCount;
 	private Dictionary dic; 
 	
 	/**
@@ -13,7 +12,7 @@ public class Huffman {
 		
 	}
 	/**
-	 * Constructor From Dictionary
+	 * Constructor From Dictionary & binary string / integer??
 	 */
 	Huffman (Dictionary dic, String bin){
 		
@@ -22,7 +21,8 @@ public class Huffman {
 	 * @return Dictionary for Huffman's Text File
 	 */
 	private void readText(){
-		//uses private textfile String to generate asciiCount and dictionary
+		//TODOadds each char to the dictionary
+		while(get())
 		
 	}
 	
