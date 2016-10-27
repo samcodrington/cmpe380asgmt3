@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Dictionary {
 	private int origCharCount;
-	private ArrayList<Entry> entryList;
+	private ArrayList<Entry> entryList=new ArrayList<Entry>();
 	Dictionary(){
 		origCharCount=0;
 	}
