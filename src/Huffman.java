@@ -17,6 +17,16 @@ public class Huffman {
 		// TODO Auto-generated method stub
 		
 	}
+
+	private class Node {
+		int sum;
+		Node left;
+		Node right;
+
+		Node (int s) {
+			this.sum = s;
+		}
+	}
 	/**
 	 * Constructor From Dictionary & binary string / integer??
 	 */
