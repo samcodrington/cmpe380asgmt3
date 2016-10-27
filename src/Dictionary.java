@@ -12,7 +12,24 @@ public class Dictionary {
 			entryList.add(new Entry(c));
 		e.increment();
 		origCharCount++;
-		
+	}
+	public void sort(){
+		ArrayList<Entry> sorted = new ArrayList<Entry>();
+		while(entryList.size()>0){
+			int minIndex=0;
+			Entry min=entryList.get(0);
+			Entry e;
+			for (int i=0; i<entryList.size(); i++){
+				e=entryList.get(i);
+				if (e.getCount()<min.getCount()){
+					min=e;
+					minIndex=i;
+				}
+			}
+			sorted.add(min);
+			entryList.remove(minIndex);
+		}
+		entryList=sorted;
 	}
 	/**
 	 * If c is already contained in this dictionary's Charlist, returns that Entry, otherwise returns null
@@ -26,27 +43,5 @@ public class Dictionary {
 		return null;
 	}
 	public int getCharCount(){return origCharCount;}
-	
-	/**
-	 * Private Class for Dictionary that contains character and count and has methods to retrieve them
-	 * @author Sam
-	 *
-	 */
-	private class Entry{
-		Entry(char c){
-			character=c;
-			count=0;
-		}
-		Entry(char c, String b){
-			character=c;
-			binary=b;
-		}
-		private char character;
-		private int count;
-		private String binary;
-		public char getChar(){return character;}
-		public int getCount(){return count;}
-		public void increment(){count++;}
-		public void setBin(String b){binary=b;}
-	}
+
 }
