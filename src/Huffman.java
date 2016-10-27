@@ -27,6 +27,11 @@ public class Huffman {
 			this.sum = s;
 		}
 	}
+	private void setBinaries(Node n, String s){
+		if (n.entry==null){
+			
+		}
+	}
 	
 	/**
 	 * Constructor From Dictionary & binary string / integer??
