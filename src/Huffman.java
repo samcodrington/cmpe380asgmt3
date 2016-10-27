@@ -3,7 +3,7 @@ import java.io.InputStream;
 public class Huffman {
 	private String textfile;
 	private Dictionary dic=new Dictionary(); 
-	
+	private Node head;
 	/**
 	 * Constructor from String
 	 */
@@ -12,6 +12,7 @@ public class Huffman {
 		readText();
 		dic.sort();
 		createBinaryTree();
+		setBinaries(head,"");
 	}
 	private void createBinaryTree() {
 		// TODO Auto-generated method stub
@@ -28,8 +29,14 @@ public class Huffman {
 		}
 	}
 	private void setBinaries(Node n, String s){
-		if (n.entry==null){
-			
+		if (n.entry==null){ // this node is not a leaf
+			String sleft=s+"0";
+			setBinaries(n.left,sleft);
+			String sright=s+"1";
+			setBinaries(n.right,sright);
+		}
+		else {//this node is a leaf
+			n.entry.setBinary(s);
 		}
 	}
 	
