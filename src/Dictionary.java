@@ -2,14 +2,27 @@ import java.util.ArrayList;
 
 public class Dictionary {
 	private int charCount;
-	private ArrayList<Entry> Charlist;
+	private ArrayList<Entry> entryList;
 	Dictionary(){
 		charCount=0;
 	}
 	public void addChar(char c){
-		//TODO 
-		//TODO if we don't have the character already- create Entry
-		//TODO if we do --> find Entry and increment it
+		Entry e=check(c);
+		if (e==null)
+			entryList.add(new Entry(c));
+		e.increment();
+		charCount++;
+	}
+	/**
+	 * If c is already contained in this dictionary's Charlist, returns that Entry, otherwise returns null
+	 * @param c
+	 */
+	private Entry check(char c) {
+		for (Entry e:entryList){
+			if (e.getChar()==c)
+				return e;
+		}
+		return null;
 	}
 	public int getCharCount(){return charCount;}
 	

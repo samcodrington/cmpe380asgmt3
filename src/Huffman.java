@@ -1,3 +1,4 @@
+import java.io.InputStream;
 
 public class Huffman {
 	private String textfile;
@@ -21,9 +22,9 @@ public class Huffman {
 	 * @return Dictionary for Huffman's Text File
 	 */
 	private void readText(){
-		//TODOadds each char to the dictionary
-		while(get())
-		
+		int length=textfile.length();
+		for (int i=0;i<length;i++)
+			dic.addChar(textfile.charAt(i));	
 	}
 	
 	
