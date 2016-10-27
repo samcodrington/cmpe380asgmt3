@@ -15,16 +15,27 @@ public class Huffman {
 	}
 	private void createBinaryTree() {
 		// TODO Auto-generated method stub
+
+		// Get the first two nodes from the list
+		Node nodeI = new Node(dic.getEntryList().get(0));
+		Node nodeJ = new Node(dic.getEntryList().get(1));
+
+		// Begin to create the tree
 		
+
 	}
 
 	private class Node {
-		int sum;
-		Node left;
-		Node right;
+		public int sum;
+		public Node left;
+		public Node right;
+		public Entry entry;
 
-		Node (int s) {
-			this.sum = s;
+		Node (Entry e) {
+			this.sum = 0;
+			this.left = null;
+			this.right = null;
+			this.entry = e;
 		}
 	}
 	/**

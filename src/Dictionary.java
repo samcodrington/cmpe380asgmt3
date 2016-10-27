@@ -44,5 +44,6 @@ public class Dictionary {
 		return null;
 	}
 	public int getCharCount(){return origCharCount;}
+	public ArrayList<Entry> getEntryList() { return entryList; }
 
 }
