@@ -38,6 +38,7 @@ public class Huffman {
 			this.entry = e;
 		}
 	}
+	
 	/**
 	 * Constructor From Dictionary & binary string / integer??
 	 */
@@ -53,17 +54,6 @@ public class Huffman {
 		for (int i=0;i<length;i++){
 			c=textfile.charAt(i);
 			dic.addChar(c);
-		}
-				
+		}			
 	}
-	
-	
-	/*
-	 * We're going to generate a Huffman Object using the read file as a string as input
-	 * The object will have a private string origTextString, int asciCharCount,
-	 */
-	// TODO character count method! (while we're at it # of bits needed to store unencoded (total num characters * 8 bits per ASCII)
-	
-	// TODO generate binary tree from read file
-	// TODO get Huffman codes from binary tree
 }
