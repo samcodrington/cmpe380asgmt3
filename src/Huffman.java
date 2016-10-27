@@ -15,7 +15,7 @@ public class Huffman {
 	/**
 	 * Constructor From Dictionary & binary string / integer??
 	 */
-	Huffman (Dictionary dic, String bin){
+	Huffman (String dic, String bin){
 		
 	}
 	/** Generate Dictionary

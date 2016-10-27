@@ -1,17 +1,18 @@
 import java.util.ArrayList;
 
 public class Dictionary {
-	private int charCount;
+	private int origCharCount;
 	private ArrayList<Entry> entryList;
 	Dictionary(){
-		charCount=0;
+		origCharCount=0;
 	}
 	public void addChar(char c){
 		Entry e=check(c);
 		if (e==null)
 			entryList.add(new Entry(c));
 		e.increment();
-		charCount++;
+		origCharCount++;
+		
 	}
 	/**
 	 * If c is already contained in this dictionary's Charlist, returns that Entry, otherwise returns null
@@ -24,7 +25,7 @@ public class Dictionary {
 		}
 		return null;
 	}
-	public int getCharCount(){return charCount;}
+	public int getCharCount(){return origCharCount;}
 	
 	/**
 	 * Private Class for Dictionary that contains character and count and has methods to retrieve them
@@ -36,14 +37,16 @@ public class Dictionary {
 			character=c;
 			count=0;
 		}
-		Entry(char c, int i){
+		Entry(char c, String b){
 			character=c;
-			count=i;
+			binary=b;
 		}
 		private char character;
 		private int count;
+		private String binary;
 		public char getChar(){return character;}
 		public int getCount(){return count;}
 		public void increment(){count++;}
+		public void setBin(String b){binary=b;}
 	}
 }
