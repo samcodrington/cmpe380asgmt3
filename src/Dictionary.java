@@ -10,7 +10,8 @@ public class Dictionary {
 		Entry e=check(c);
 		if (e==null)
 			entryList.add(new Entry(c));
-		e.increment();
+		else
+			e.increment();
 		origCharCount++;
 	}
 	public void sort(){

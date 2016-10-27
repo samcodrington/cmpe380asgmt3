@@ -7,7 +7,7 @@
 public class Entry{
 	Entry(char c){
 		character=c;
-		count=0;
+		count=1;
 	}
 	
 	private char character;

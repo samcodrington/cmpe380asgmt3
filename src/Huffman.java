@@ -2,7 +2,7 @@ import java.io.InputStream;
 
 public class Huffman {
 	private String textfile;
-	private Dictionary dic; 
+	private Dictionary dic=new Dictionary(); 
 	
 	/**
 	 * Constructor from String
@@ -23,8 +23,12 @@ public class Huffman {
 	 */
 	private void readText(){
 		int length=textfile.length();
-		for (int i=0;i<length;i++)
-			dic.addChar(textfile.charAt(i));	
+		char c;
+		for (int i=0;i<length;i++){
+			c=textfile.charAt(i);
+			dic.addChar(c);
+		}
+				
 	}
 	
 	
