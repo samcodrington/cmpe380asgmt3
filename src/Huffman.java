@@ -10,6 +10,11 @@ public class Huffman {
 	Huffman(String s){
 		textfile=s;
 		readText();
+		dic.sort();
+		createBinaryTree();
+	}
+	private void createBinaryTree() {
+		// TODO Auto-generated method stub
 		
 	}
 	/**

@@ -9,9 +9,14 @@ public class Entry{
 		character=c;
 		count=1;
 	}
+	Entry(char c, String b){
+		character=c;
+		binary=b;
+	}
 	
 	private char character;
 	private int count;
+	private String binary;
 	
 	public char getChar(){return character;}
 	public int getCount(){return count;}
