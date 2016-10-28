@@ -5,6 +5,8 @@ public class Huffman {
 	private String textfile;
 	private Dictionary dic=new Dictionary(); 
 	private Node head;
+	private ArrayList<Node> binList=new ArrayList<Node>();
+
 	/**
 	 * Constructor from String
 	 */
@@ -16,19 +18,42 @@ public class Huffman {
 		setBinaries(head,"");
 	}
 	private void createBinaryTree() {
-		//Create all Leaves
-		ArrayList<Node> binTree=new ArrayList<Node>();
-		for (Entry e: dic.getEntryList()){
-			Node n=new Node(e);
-			binTree.add(n);
-		}
-		// Begin to create the tree
-		int i=0;
-		while (i < dic.getEntryList().size()-1) {
-			
-		}
 		
 
+		//Create all Leaves
+		for (Entry e: dic.getEntryList()){
+			Node n=new Node(e);
+			binList.add(n);
+		}
+		final int leafSize=binList.size();
+		// Begin to create the tree
+		int i=0;
+		int count = 0;
+		int[] mins=new int[2];
+		while (count<leafSize-1) {// we will have to make leaves-1 nodes always
+			mins=findLeast(i);
+			if (mins[0]<leafSize&&mins[1]<leafSize)
+				i+=2;
+			else if(mins[0]<leafSize&&mins[1]<leafSize)
+				i++;
+			Node n=new Node(binList.get(mins[0]),binList.get(mins[1]));
+			binList.add(n);
+			count++;
+		}
+	}
+	private int[] findLeast(int i){
+		int minA = i, minB=i+1;
+		for (int j=i;j<binList.size();j++){
+			if (binList.get(j).sum<binList.get(minA).sum){
+				minB=minA;
+				minA=j;
+			}
+			else if(binList.get(j).sum<binList.get(minB).sum){
+				minB=j;
+			}
+		}
+		int[] mins={minA,minB};
+		return mins;
 	}
 
 	private class Node {
