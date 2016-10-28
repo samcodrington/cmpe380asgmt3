@@ -20,7 +20,15 @@ public class Huffman {
 		Node nodeI = new Node(dic.getEntryList().get(0));
 		Node nodeJ = new Node(dic.getEntryList().get(1));
 
+		// The next index after the first two nodes;
+		int i = 2;
+
 		// Begin to create the tree
+		while (i < dic.getEntryList().size()) {
+			if(nodeI.left == null && nodeJ.right == null){
+
+			}
+		}
 		
 
 	}
