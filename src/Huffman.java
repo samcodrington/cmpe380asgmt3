@@ -1,4 +1,5 @@
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class Huffman {
 	private String textfile;
@@ -15,20 +16,16 @@ public class Huffman {
 		setBinaries(head,"");
 	}
 	private void createBinaryTree() {
-		// TODO Auto-generated method stub
-
-		// Get the first two nodes from the list
-		Node nodeI = new Node(dic.getEntryList().get(0));
-		Node nodeJ = new Node(dic.getEntryList().get(1));
-
-		// The next index after the first two nodes;
-		int i = 2;
-
+		//Create all Leaves
+		ArrayList<Node> binTree=new ArrayList<Node>();
+		for (Entry e: dic.getEntryList()){
+			Node n=new Node(e);
+			binTree.add(n);
+		}
 		// Begin to create the tree
-		while (i < dic.getEntryList().size()) {
-			if(nodeI.left == null && nodeJ.right == null){
-
-			}
+		int i=0;
+		while (i < dic.getEntryList().size()-1) {
+			
 		}
 		
 
@@ -41,10 +38,16 @@ public class Huffman {
 		public Entry entry;
 
 		Node (Entry e) {
-			this.sum = 0;
+			this.sum = e.getCount();
 			this.left = null;
 			this.right = null;
 			this.entry = e;
+		}
+		Node (Node l, Node r){
+			this.sum=l.sum+r.sum;
+			this.left=l;
+			this.right=r;
+			this.entry=null;
 		}
 	}
 	private void setBinaries(Node n, String s){
