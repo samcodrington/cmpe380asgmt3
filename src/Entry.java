@@ -21,4 +21,5 @@ public class Entry{
 	public char getChar(){return character;}
 	public int getCount(){return count;}
 	public void increment(){count++;}
+	public void setBinary(String b){binary=b;};
 }
