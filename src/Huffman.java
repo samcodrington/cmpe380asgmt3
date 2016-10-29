@@ -17,6 +17,18 @@ public class Huffman {
 		setBinaries(head,"");
 		dic.writeMe();
 	}
+	/**
+	 * Alternate Constructor From Dictionary string & encodedtextFile
+	 * @param dic string representation of a Dictionary textfile
+	 * @param bin string representation of an encoded textfile
+	 */
+	Huffman (String dic, String bin){
+		//might want to pass dic as an ArrayList<String>, with each line of the dictionary as it's own string 
+		//TODO decoder constructor!
+		//	TODO generate each entry of dictionary from each line of dic
+		//	TODO decode bin by 
+		//	TODO generate textfile of decoded file
+	}
 	/** 
 	 * readText method adds each character of the textfile into the dictionary
 	 */
@@ -56,63 +68,7 @@ public class Huffman {
 				clone.remove(mins[1]);
 			}
 		}
-		head=n;
-	}
-	/**
-	 * findLeast traverses a given ArrayList of Nodes and finds the Nodes with the least Sum and returns their indices in a int[] vertex
-	 * @param a the ArrayList to be traversed
-	 * @return mins = {min,2ndmin}
-	 */
-	private int[] findLeast(ArrayList<Node> a){
-		int minA=0, minB=1;
-		for (int j=2;j<a.size();j++){
-			if (a.get(j).sum<a.get(minA).sum){
-				minB=minA;
-				minA=j;
-			}
-			else if(a.get(j).sum<a.get(minB).sum){
-				minB=j;
-			}
-		}
-		int[] mins={minA,minB};
-		return mins;
-	}
-
-	private class Node {
-		public int sum;
-		public Node left;
-		public Node right;
-		public Entry entry;
-		Node (Entry e) {
-			this.sum = e.getCount();
-			this.left = null;
-			this.right = null;
-			this.entry = e;
-		}
-		Node (Node l, Node r){
-			this.sum=l.sum+r.sum;
-			this.left=l;
-			this.right=r;
-			this.entry=null;
-		}
-	}
-	private void setBinaries(Node n, String s){
-		if (n.entry==null){ // this node is not a leaf
-			String sleft=s+"0";
-			setBinaries(n.left,sleft);
-			String sright=s+"1";
-			setBinaries(n.right,sright);
-		}
-		else {//this node is a leaf
-			n.entry.setBinary(s);
-		}
-	}
-
-	/**
-	 * Constructor From Dictionary & binary string / integer??
-	 */
-	Huffman (String dic, String bin){
-
+		head=n; //last node created will be top of the binary tree! this is used in the setBinaries method
 	}
 	/**
 	 * The encode method prints a message detailing how many bits the Huffmann encoder saved
@@ -137,5 +93,64 @@ public class Huffman {
 		System.out.println("Our Huffman object encoded a text file that would be "+i*8+" bits long in ASCII into a bit string that is "+length+ " bits long");
 		System.out.println("This method saved "+(i*8-length)+" bits!!");
 
+	}
+	/**
+	 * findLeast traverses a given ArrayList of Nodes and finds the Nodes with the least Sum and returns their indices in a int[] vertex
+	 * @param a the ArrayList to be traversed
+	 * @return mins = {min,2ndmin}
+	 */
+	private int[] findLeast(ArrayList<Node> a){
+		int minA=0, minB=1;
+		for (int j=2;j<a.size();j++){
+			if (a.get(j).sum<a.get(minA).sum){
+				minB=minA;
+				minA=j;
+			}
+			else if(a.get(j).sum<a.get(minB).sum){
+				minB=j;
+			}
+		}
+		int[] mins={minA,minB};
+		return mins;
+	}
+	
+	/**
+	 * setBinaries
+	 * @param n
+	 * @param s
+	 */
+	private void setBinaries(Node n, String s){
+		if (n.entry==null){ // this node is not a leaf
+			String sleft=s+"0";
+			setBinaries(n.left,sleft);
+			String sright=s+"1";
+			setBinaries(n.right,sright);
+		}
+		else {//this node is a leaf
+			n.entry.setBinary(s);
+		}
+	}	
+	/**
+	 * Private class for nodes of binary tree, if entry is null== node is a branch, otherwise node is a leaf. 
+	 * @author Aidan
+	 */
+
+	private class Node {
+		public int sum;
+		public Node left;
+		public Node right;
+		public Entry entry;
+		Node (Entry e) {
+			this.sum = e.getCount();
+			this.left = null;
+			this.right = null;
+			this.entry = e;
+		}
+		Node (Node l, Node r){
+			this.sum=l.sum+r.sum;
+			this.left=l;
+			this.right=r;
+			this.entry=null;
+		}
 	}
 }
