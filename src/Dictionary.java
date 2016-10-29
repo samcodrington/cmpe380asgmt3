@@ -64,8 +64,16 @@ public class Dictionary {
 		    writer.close();
 		} catch (Exception e) {
 			System.out.println("Something has gone terribly wrong");
-		   // do something
 		}
+	}
+	public String encode(char c) {
+		int i=0;
+		Entry e=entryList.get(i);
+		while(e.getChar()!=c){
+			i++;
+			e=entryList.get(i);
+		}
+		return e.getBinary();
 	}
 
 }

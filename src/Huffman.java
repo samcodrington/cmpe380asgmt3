@@ -1,9 +1,10 @@
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Huffman {
 	private String textfile;
 	private Dictionary dic=new Dictionary(); 
-	private ArrayList<Node> nodeList=new ArrayList<Node>();
+	private Node head;
 
 	/**
 	 * Constructor from String
@@ -13,11 +14,11 @@ public class Huffman {
 		readText();
 		dic.sort();
 		createBinaryTree();
-		setBinaries(nodeList.get(nodeList.size()-1),"");
+		setBinaries(head,"");
 		dic.writeMe();
 	}
-	/** Generate Dictionary
-	 * @return Dictionary for Huffman's Text File
+	/** 
+	 * readText method adds each character of the textfile into the dictionary
 	 */
 	private void readText(){
 		int length=textfile.length();
@@ -27,23 +28,26 @@ public class Huffman {
 			dic.addChar(c);
 		}			
 	}
+	/**
+	 * createBinaryTree creates a full list of nodes
+	 */
 	private void createBinaryTree() {
 		//Create all Leaves
 		ArrayList<Node>clone=new ArrayList<Node>();
 		for (Entry e: dic.getEntryList()){ 
 			Node n=new Node(e);
-			nodeList.add(n);
 			clone.add(n);
 		}
 		// Begin to create the tree
 		int[] mins=new int[2];
-		while (clone.size()>1) {// we will have to make leaves-1 nodes always
+		Node n=null;
+		while (clone.size()>1) {// while there are still two objects to find the least of
 			mins=findLeast(clone);
 
-			Node n=new Node(clone.get(mins[0]),clone.get(mins[1]));
-			nodeList.add(n);
+			n=new Node(clone.get(mins[0]),clone.get(mins[1]));
 			clone.add(n);
-			if (mins[1]>mins[0]){
+			//remove larger indice first so the index is still accurate after the first removal
+			if (mins[1]>mins[0]){ 
 				clone.remove(mins[1]);
 				clone.remove(mins[0]);
 			}
@@ -52,7 +56,13 @@ public class Huffman {
 				clone.remove(mins[1]);
 			}
 		}
+		head=n;
 	}
+	/**
+	 * findLeast traverses a given ArrayList of Nodes and finds the Nodes with the least Sum and returns their indices in a int[] vertex
+	 * @param a the ArrayList to be traversed
+	 * @return mins = {min,2ndmin}
+	 */
 	private int[] findLeast(ArrayList<Node> a){
 		int minA=0, minB=1;
 		for (int j=2;j<a.size();j++){
@@ -104,9 +114,28 @@ public class Huffman {
 	Huffman (String dic, String bin){
 
 	}
+	/**
+	 * The encode method prints a message detailing how many bits the Huffmann encoder saved
+	 * @param filename
+	 */
 
 	public void encode(String filename) {
-		// TODO Auto-generated method stub
+		int i=-1, length=0;
+		String enc = null;
+		try{
+			System.out.println("Printing Dictionary into text file");
+		    PrintWriter writer = new PrintWriter(filename, "UTF-8");
+		    for (i=0;i<textfile.length();i++){
+		    	enc=dic.encode(textfile.charAt(i));
+		    	length+=enc.length();
+		    	writer.write(enc);
+		    }
+		    writer.close();
+		} catch (Exception e) {
+			System.out.println("Something has gone terribly wrong");
+		}
+		System.out.println("Our Huffman object encoded a text file that would be "+i*8+" bits long in ASCII into a bit string that is "+length+ " bits long");
+		System.out.println("This method saved "+(i*8-length)+" bits!!");
 
 	}
 }
