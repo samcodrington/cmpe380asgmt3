@@ -28,6 +28,8 @@ public class assignment3 {
 		well, so that the document can be successfully restored.*/
 		Huffman partA=new Huffman(samMcGee);
 		System.out.println("Loaded into Huffman Object");
+		System.out.println("Encoding SamMcGee.txt");
+		partA.encode("Sam McGee Encoded.txt");
 
 		/*
 		Part b)  read a text file that contains a Huffman Code and store the code-strings in an appropriate

@@ -1,11 +1,9 @@
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class Huffman {
 	private String textfile;
 	private Dictionary dic=new Dictionary(); 
-	private Node head;
-	private ArrayList<Node> binList=new ArrayList<Node>();
+	private ArrayList<Node> nodeList=new ArrayList<Node>();
 
 	/**
 	 * Constructor from String
@@ -15,40 +13,54 @@ public class Huffman {
 		readText();
 		dic.sort();
 		createBinaryTree();
-		setBinaries(head,"");
+		setBinaries(nodeList.get(nodeList.size()-1),"");
+		dic.writeMe();
+	}
+	/** Generate Dictionary
+	 * @return Dictionary for Huffman's Text File
+	 */
+	private void readText(){
+		int length=textfile.length();
+		char c;
+		for (int i=0;i<length;i++){
+			c=textfile.charAt(i);
+			dic.addChar(c);
+		}			
 	}
 	private void createBinaryTree() {
-		
-
 		//Create all Leaves
-		for (Entry e: dic.getEntryList()){
+		ArrayList<Node>clone=new ArrayList<Node>();
+		for (Entry e: dic.getEntryList()){ 
 			Node n=new Node(e);
-			binList.add(n);
+			nodeList.add(n);
+			clone.add(n);
 		}
-		final int leafSize=binList.size();
 		// Begin to create the tree
-		int i=0;
-		int count = 0;
 		int[] mins=new int[2];
-		while (count<leafSize-1) {// we will have to make leaves-1 nodes always
-			mins=findLeast(i);
-			if (mins[0]<leafSize&&mins[1]<leafSize)
-				i+=2;
-			else if(mins[0]<leafSize&&mins[1]<leafSize)
-				i++;
-			Node n=new Node(binList.get(mins[0]),binList.get(mins[1]));
-			binList.add(n);
-			count++;
+		while (clone.size()>1) {// we will have to make leaves-1 nodes always
+			mins=findLeast(clone);
+
+			Node n=new Node(clone.get(mins[0]),clone.get(mins[1]));
+			nodeList.add(n);
+			clone.add(n);
+			if (mins[1]>mins[0]){
+				clone.remove(mins[1]);
+				clone.remove(mins[0]);
+			}
+			else{
+				clone.remove(mins[0]);
+				clone.remove(mins[1]);
+			}
 		}
 	}
-	private int[] findLeast(int i){
-		int minA = i, minB=i+1;
-		for (int j=i;j<binList.size();j++){
-			if (binList.get(j).sum<binList.get(minA).sum){
+	private int[] findLeast(ArrayList<Node> a){
+		int minA=0, minB=1;
+		for (int j=2;j<a.size();j++){
+			if (a.get(j).sum<a.get(minA).sum){
 				minB=minA;
 				minA=j;
 			}
-			else if(binList.get(j).sum<binList.get(minB).sum){
+			else if(a.get(j).sum<a.get(minB).sum){
 				minB=j;
 			}
 		}
@@ -61,7 +73,6 @@ public class Huffman {
 		public Node left;
 		public Node right;
 		public Entry entry;
-
 		Node (Entry e) {
 			this.sum = e.getCount();
 			this.left = null;
@@ -86,22 +97,16 @@ public class Huffman {
 			n.entry.setBinary(s);
 		}
 	}
-	
+
 	/**
 	 * Constructor From Dictionary & binary string / integer??
 	 */
 	Huffman (String dic, String bin){
-		
+
 	}
-	/** Generate Dictionary
-	 * @return Dictionary for Huffman's Text File
-	 */
-	private void readText(){
-		int length=textfile.length();
-		char c;
-		for (int i=0;i<length;i++){
-			c=textfile.charAt(i);
-			dic.addChar(c);
-		}			
+
+	public void encode(String filename) {
+		// TODO Auto-generated method stub
+
 	}
 }

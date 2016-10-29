@@ -1,9 +1,9 @@
 /**
-	 * Private Class for Dictionary that contains character and count and has methods to retrieve them
-	 * @author Sam
-	 *
-	 */
-	
+ * Private Class for Dictionary that contains character and count and has methods to retrieve them
+ * @author Sam
+ *
+ */
+
 public class Entry{
 	Entry(char c){
 		character=c;
@@ -13,13 +13,14 @@ public class Entry{
 		character=c;
 		binary=b;
 	}
-	
+
 	private char character;
 	private int count;
 	private String binary;
-	
+
 	public char getChar(){return character;}
 	public int getCount(){return count;}
 	public void increment(){count++;}
-	public void setBinary(String b){binary=b;};
+	public String getBinary(){return binary;};
+	public void setBinary(String b){binary=b;}
 }
