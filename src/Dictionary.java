@@ -21,7 +21,6 @@ public class Dictionary {
 
 		for (int i = 0; i < dicInput.size(); i++) {
 			String s = dicInput.get(i);
-
 			try {
 				if (!(Character.isWhitespace(s.charAt(0)))) {
 					String[] split = s.split(" ");
@@ -34,7 +33,6 @@ public class Dictionary {
 			} catch (Exception e) {
 				System.out.println("The error is happening at index: " + i);
 			}
-
 		}
 	}
 
@@ -84,8 +82,7 @@ public class Dictionary {
 		}
 		entryList=sorted;
 	}
-	
-	public int getCharCount(){return origCharCount;}
+
 	public ArrayList<Entry> getEntryList() { return entryList; }
 	/**
 	 * Outputs the contents of the dictionary into a readable text file

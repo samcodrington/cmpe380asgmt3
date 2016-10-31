@@ -79,14 +79,12 @@ public class Huffman {
 	 */
 	public void decode(String fileName) {
 		String binaryString = "";
-
 		try {
 			System.out.println("Attempting to decode file...");
 			PrintWriter writer = new PrintWriter(fileName);
 			for (int i = 0; i < binVals.size(); i++) {
 				String binVal = binVals.get(i);
 				binaryString += binVal;
-
 				// Check if the series of binary values represents a "space" character
 				if (binaryString.equals("01")) {
 					writer.write(" ");
@@ -97,7 +95,6 @@ public class Huffman {
 					writer.write("\n");
 					binaryString = "";
 				}
-
 				// Check if the series of binary values represents a character defined in
 				// our dictionary
 				else {
@@ -112,7 +109,6 @@ public class Huffman {
 		} catch (Exception e) {
 			System.out.println("Something has gone terribly wrong");
 		}
-
 		System.out.println("File successfully decoded!");
 	}
 
@@ -193,11 +189,10 @@ public class Huffman {
 
 		return binList;
 	}
-	/**
-	 * Private class for nodes of binary tree, if entry is null== node is a branch, otherwise node is a leaf. 
-	 * @author Aidan
-	 */
 
+	/**
+	 * Private class for nodes of binary tree, if entry is null== node is a branch, otherwise node is a leaf.
+	 */
 	private class Node {
 		public int sum;
 		public Node left;
