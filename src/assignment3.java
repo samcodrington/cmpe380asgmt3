@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.charset.Charset;
 import java.util.*;
 public class assignment3 {
 
@@ -36,13 +35,15 @@ public class assignment3 {
 		data-structure, then use that code to decode a text file consisting solely of 1's and 0's (In this
 		lab we will use the characters "1" and "0" to simulate individual bits)
 		 */
-		// TODO
 		ArrayList<String> dictionary = new ArrayList<String>();
 		readFile(dictionary, "Dictionary.txt");
 		System.out.println("Successfully read Dictionary.txt!");
 		String mystery = readBinLine("Mystery.txt");
 		System.out.println("Successfully read Mystery.txt!");
 		Huffman partB = new Huffman(dictionary, mystery);
+		System.out.println("Succesfully pulled information to be decoded!");
+		partB.decode("Mystery Decoded.txt");
+
 	}
 
 	private static String readFile(String fileName) {
@@ -78,11 +79,13 @@ public class assignment3 {
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(dicFile));
-			line = br.readLine();
-			while(line != null) {
+
+			do {
 				line = br.readLine();
-				dic.add(line);
-			}
+				if(line != null)
+					dic.add(line);
+			} while (line != null);
+
 		} catch (FileNotFoundException ex) {
 			System.out.println("File not found!");
 			ex.printStackTrace();

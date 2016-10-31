@@ -72,39 +72,48 @@ public class Huffman {
 		head=n; //last node created will be top of the binary tree! this is used in the setBinaries method
 	}
 
-	public String decode() {
-		String fullText = null;
-		String binaryString = null;
+	/**
+	 * The decode method takes a known dictionary for a given encoded file, and decodes it. It then
+	 * writes to a new text file.
+	 * @param fileName	The name of the text file to be created.
+	 */
+	public void decode(String fileName) {
+		String binaryString = "";
 
-		for(int i = 0; i < binVals.size(); i++) {
-			String binVal = binVals.get(i);
-			binaryString += binVal;
+		try {
+			System.out.println("Attempting to decode file...");
+			PrintWriter writer = new PrintWriter(fileName);
+			for (int i = 0; i < binVals.size(); i++) {
+				String binVal = binVals.get(i);
+				binaryString += binVal;
 
-			// Check if the series of binary values represents a "space" character
-			if(binaryString == "01") {
-				fullText += " ";
-				binaryString = null;
-			}
-			// Check if the series of binary values represents a "line-feed" character
-			else if(binaryString == "00011") {
-				fullText += "\n";
-				binaryString = null;
-			}
+				// Check if the series of binary values represents a "space" character
+				if (binaryString.equals("01")) {
+					writer.write(" ");
+					binaryString = "";
+				}
+				// Check if the series of binary values represents a "line-feed" character
+				else if (binaryString.equals("00011")) {
+					writer.write("\n");
+					binaryString = "";
+				}
 
-			// Check if the series of binary values represents a character defined in
-			// our dictionary
-			else {
-				for (int j = 0; j < dic.getEntryList().size(); j++) {
-					if (binaryString == dic.getEntryList().get(i).getBinary()) {
-						String temp = Character.toString(dic.getEntryList().get(i).getChar());
-						fullText += temp;
-						binaryString = null;
+				// Check if the series of binary values represents a character defined in
+				// our dictionary
+				else {
+					for (int j = 0; j < dic.getEntryList().size(); j++) {
+						if (binaryString.equals(dic.getEntryList().get(j).getBinary())) {
+							writer.write(dic.getEntryList().get(j).getChar());
+							binaryString = "";
+						}
 					}
 				}
 			}
+		} catch (Exception e) {
+			System.out.println("Something has gone terribly wrong");
 		}
 
-		return fullText;
+		System.out.println("File successfully decoded!");
 	}
 
 	/**
