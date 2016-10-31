@@ -22,9 +22,9 @@ public class Huffman {
 	 * @param dic string representation of a Dictionary textfile
 	 * @param bin string representation of an encoded textfile
 	 */
-	Huffman (String dic, String bin){
+	Huffman (ArrayList<String> dic, String bin){
 		//might want to pass dic as an ArrayList<String>, with each line of the dictionary as it's own string 
-		//TODO decoder constructor!
+		//  TODO decoder constructor!
 		//	TODO generate each entry of dictionary from each line of dic
 		//	TODO decode bin by 
 		//	TODO generate textfile of decoded file

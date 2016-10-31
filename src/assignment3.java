@@ -36,8 +36,14 @@ public class assignment3 {
 		data-structure, then use that code to decode a text file consisting solely of 1's and 0's (In this
 		lab we will use the characters "1" and "0" to simulate individual bits)
 		 */
-		// TODO 
+		// TODO
+		ArrayList<String> dictionary = new ArrayList<String>();
+		readFile(dictionary, "Dictionary.txt");
+		String mystery = readBinLine("Mystery.txt");
+		System.out.println(mystery);
 
+		for(int i = 0; i < dictionary.size(); i++)
+			System.out.println(dictionary.get(i));
 	}
 
 	private static String readFile(String fileName) {
@@ -66,7 +72,43 @@ public class assignment3 {
 			sb.append(it.next());
 		}
 		return sb.toString();
+	}
 
+	private static void readFile(ArrayList<String> dic, String dicFile) {
+		String line;
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(dicFile));
+			line = br.readLine();
+			while(line != null) {
+				line = br.readLine();
+				dic.add(line);
+			}
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found!");
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			System.out.println("IO Error");
+			ex.printStackTrace();
+		}
+	}
+
+	private static String readBinLine(String fileName) {
+		String line = null;
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			line = br.readLine();
+
+		} catch (FileNotFoundException ex) {
+			System.out.println("File not found!");
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			System.out.println("IO Error");
+			ex.printStackTrace();
+		}
+
+		return line;
 	}
 
 	private static ArrayList<Character> readChar(Reader br) throws IOException {
