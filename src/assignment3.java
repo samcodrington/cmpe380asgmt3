@@ -43,7 +43,6 @@ public class assignment3 {
 		String mystery = readBinLine("Mystery.txt");
 		System.out.println("Successfully read Mystery.txt!");
 		Huffman partB = new Huffman(dictionary, mystery);
-
 	}
 
 	private static String readFile(String fileName) {

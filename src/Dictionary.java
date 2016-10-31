@@ -19,15 +19,22 @@ public class Dictionary {
 	Dictionary(ArrayList<String> dicInput) {
 		this.entryList = new ArrayList();
 
-		for (String s : dicInput) {
-			if (!(Character.isWhitespace(s.charAt(0)))) {
-				String[] split = s.split(" ");
-				if (split[0] != "<LF>") {
-					char charEquivalent = split[0].charAt(0); //split[0] is the desired character
-					Entry newEntry = new Entry(charEquivalent, split[1]); //split[1] is a binary string
-					entryList.add(newEntry);
+		for (int i = 0; i < dicInput.size(); i++) {
+			String s = dicInput.get(i);
+
+			try {
+				if (!(Character.isWhitespace(s.charAt(0)))) {
+					String[] split = s.split(" ");
+					if (split[0] != "<LF>") {
+						char charEquivalent = split[0].charAt(0); //split[0] is the desired character
+						Entry newEntry = new Entry(charEquivalent, split[1]); //split[1] is a binary string
+						entryList.add(newEntry);
+					}
 				}
+			} catch (Exception e) {
+				System.out.println("The error is happening at index: " + i);
 			}
+
 		}
 	}
 

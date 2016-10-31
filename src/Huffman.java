@@ -28,8 +28,6 @@ public class Huffman {
 		this.dic = new Dictionary(dic);
 		this.binVals = getBinary(bin);
 	}
-
-	//	TODO generate each entry of dictionary from each line of dic
 	//	TODO decode bin by
 	//	TODO generate textfile of decoded file
 	/** 
@@ -73,6 +71,42 @@ public class Huffman {
 		}
 		head=n; //last node created will be top of the binary tree! this is used in the setBinaries method
 	}
+
+	public String decode() {
+		String fullText = null;
+		String binaryString = null;
+
+		for(int i = 0; i < binVals.size(); i++) {
+			String binVal = binVals.get(i);
+			binaryString += binVal;
+
+			// Check if the series of binary values represents a "space" character
+			if(binaryString == "01") {
+				fullText += " ";
+				binaryString = null;
+			}
+			// Check if the series of binary values represents a "line-feed" character
+			else if(binaryString == "00011") {
+				fullText += "\n";
+				binaryString = null;
+			}
+
+			// Check if the series of binary values represents a character defined in
+			// our dictionary
+			else {
+				for (int j = 0; j < dic.getEntryList().size(); j++) {
+					if (binaryString == dic.getEntryList().get(i).getBinary()) {
+						String temp = Character.toString(dic.getEntryList().get(i).getChar());
+						fullText += temp;
+						binaryString = null;
+					}
+				}
+			}
+		}
+
+		return fullText;
+	}
+
 	/**
 	 * The encode method prints a message detailing how many bits the Huffmann encoder saved
 	 * @param filename
