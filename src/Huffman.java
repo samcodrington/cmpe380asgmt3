@@ -5,6 +5,7 @@ public class Huffman {
 	private String textfile;
 	private Dictionary dic=new Dictionary(); 
 	private Node head;
+	private ArrayList<String> binVals = new ArrayList();
 
 	/**
 	 * Constructor from String
@@ -23,12 +24,14 @@ public class Huffman {
 	 * @param bin string representation of an encoded textfile
 	 */
 	Huffman (ArrayList<String> dic, String bin){
-		//might want to pass dic as an ArrayList<String>, with each line of the dictionary as it's own string 
-		//  TODO decoder constructor!
-		//	TODO generate each entry of dictionary from each line of dic
-		//	TODO decode bin by 
-		//	TODO generate textfile of decoded file
+		//might want to pass dic as an ArrayList<String>, with each line of the dictionary as it's own string
+		this.dic = new Dictionary(dic);
+		this.binVals = getBinary(bin);
 	}
+
+	//	TODO generate each entry of dictionary from each line of dic
+	//	TODO decode bin by
+	//	TODO generate textfile of decoded file
 	/** 
 	 * readText method adds each character of the textfile into the dictionary
 	 */
@@ -129,7 +132,24 @@ public class Huffman {
 		else {//this node is a leaf
 			n.entry.setBinary(s);
 		}
-	}	
+	}
+
+	/**
+	 * Creates a list of String values of 0 or 1, representing the individual binary characters
+	 * of an encoded text file.
+	 * @param binString
+	 * @return
+	 */
+	private ArrayList<String> getBinary(String binString) {
+		ArrayList<String> binList = new ArrayList();
+
+		String[] temp = binString.split("");
+
+		for(int i = 0; i < binString.length(); i++)
+			binList.add(temp[i]);
+
+		return binList;
+	}
 	/**
 	 * Private class for nodes of binary tree, if entry is null== node is a branch, otherwise node is a leaf. 
 	 * @author Aidan

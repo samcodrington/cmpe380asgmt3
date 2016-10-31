@@ -39,11 +39,11 @@ public class assignment3 {
 		// TODO
 		ArrayList<String> dictionary = new ArrayList<String>();
 		readFile(dictionary, "Dictionary.txt");
+		System.out.println("Successfully read Dictionary.txt!");
 		String mystery = readBinLine("Mystery.txt");
-		System.out.println(mystery);
+		System.out.println("Successfully read Mystery.txt!");
+		Huffman partB = new Huffman(dictionary, mystery);
 
-		for(int i = 0; i < dictionary.size(); i++)
-			System.out.println(dictionary.get(i));
 	}
 
 	private static String readFile(String fileName) {

@@ -10,6 +10,27 @@ public class Dictionary {
 	Dictionary(){
 		origCharCount=0;
 	}
+
+	/**
+	 * generates a Dictionary based on a known dictionary where each character
+	 * is defined by a binary string
+	 * @param dicInput
+	 */
+	Dictionary(ArrayList<String> dicInput) {
+		this.entryList = new ArrayList();
+
+		for (String s : dicInput) {
+			if (!(Character.isWhitespace(s.charAt(0)))) {
+				String[] split = s.split(" ");
+				if (split[0] != "<LF>") {
+					char charEquivalent = split[0].charAt(0); //split[0] is the desired character
+					Entry newEntry = new Entry(charEquivalent, split[1]); //split[1] is a binary string
+					entryList.add(newEntry);
+				}
+			}
+		}
+	}
+
 	/**
 	 * Adds one character to the dictionary, 
 	 * if it has already seen that character it increments the entry
