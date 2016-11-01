@@ -16,7 +16,6 @@ import java.util.*;
 public class assignment3 {
 
 	public static void main(String[] args) {
-		// TODO read file
 		System.out.println("Assignment 3- Sam Codrington & Aidan Gunda");
 		String samMcGee=readFile("Sam McGee.txt");
 		System.out.println ("Successfully Read SamMcGee.txt");
@@ -41,7 +40,7 @@ public class assignment3 {
 		String mystery = readBinLine("Mystery.txt");
 		System.out.println("Successfully read Mystery.txt!");
 		Huffman partB = new Huffman(dictionary, mystery);
-		System.out.println("Succesfully pulled information to be decoded!");
+		System.out.println("Successfully pulled information to be decoded!");
 		partB.decode("Mystery Decoded.txt");
 
 	}
