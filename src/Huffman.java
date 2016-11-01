@@ -28,8 +28,7 @@ public class Huffman {
 		this.dic = new Dictionary(dic);
 		this.binVals = getBinary(bin);
 	}
-	//	TODO decode bin by
-	//	TODO generate textfile of decoded file
+
 	/** 
 	 * readText method adds each character of the textfile into the dictionary
 	 */
